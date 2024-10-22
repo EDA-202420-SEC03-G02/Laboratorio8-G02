@@ -35,7 +35,7 @@ from DataStructures.List import array_list  as al
 # TODO Realice la importación de LinearProbing (lp) como estructura de datos auxiliar para sus requerimientos
 
 
-data_dir = "C:\\EDA20242\\Laboratorio8-G02-1\\Data\\Boston Crimes\\crime-utf8.csv"
+data_dir = "C:\\Users\\dfeli\\Downloads\\Universidad Segundo Semestre\\Estructura De Datos Y Algoritmos\\Laboratorios\\lab 7\\Laboratorio8-G02\\Data\\crime-utf8.csv"
 
 
 
@@ -219,12 +219,16 @@ def get_crimes_by_range(analyzer, initialDate, finalDate):
     # TODO Completar la función de consulta
     llaves=bst.key_set(analyzer["dateIndex"])
     
-    finalDate = datetime.datetime.strptime(finalDate, '%Y-%m-%d ').date()
-    initialDate = datetime.datetime.strptime(initialDate, '%Y-%m-%d ').date()
+    finalDate = datetime.datetime.strptime(finalDate, '%Y-%m-%d').date()
+    initialDate = datetime.datetime.strptime(initialDate, '%Y-%m-%d').date()
     num_crimenes=0
     for fechas in llaves["elements"]:
         if fechas>=initialDate and fechas<=finalDate:
-            num_crimenes+=1
+            n=bst.get(analyzer, fechas)
+            nodo_lista=n["lstcrimes"]
+            for  crimen_fecha in nodo_lista:
+                num_crimenes+=1
+            
     return num_crimenes
     pass
 
